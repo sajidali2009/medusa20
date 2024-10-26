@@ -1,8 +1,19 @@
-FROM node:latest
+FROM node:20.18.0
+
 WORKDIR /app/medusa
+
+COPY package.json .
+
+RUN apt-get update
+
+RUN apt-get install -y python
+
+RUN npm install -g npm@latest
+
+RUN npm install -g @medusajs/medusa-cli@latest
+
+RUN npm install --loglevel=error
+
 COPY . .
-RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
-RUN yarn global add @medusajs/medusa-cli
-RUN yarn
-RUN yarn build
-CMD medusa migrations run && yarn start
+
+ENTRYPOINT ["./develop.sh", "develop"]
