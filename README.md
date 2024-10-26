@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center">
   <a href="https://www.medusajs.com">
   <picture>
@@ -68,3 +69,6 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 - [Twitter](https://twitter.com/medusajs)
 - [LinkedIn](https://www.linkedin.com/company/medusajs)
 - [Medusa Blog](https://medusajs.com/blog/)
+=======
+# medusa20
+>>>>>>> 367cc24e25e28ad4ce390d874e1dced06340b688
