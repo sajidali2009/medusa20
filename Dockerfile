@@ -12,8 +12,8 @@ RUN apt-get update && \
     apt-get clean
 
 # Install latest npm and Medusa CLI globally
-RUN npm install -g npm@latest
-RUN npm install -g @medusajs/medusa-cli@latest
+#RUN npm install -g npm@latest
+RUN npm install -g @medusajs/medusa-cli
 
 # Install dependencies from package.json
 RUN npm install --loglevel=error
