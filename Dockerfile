@@ -1,22 +1,15 @@
-FROM node:20.18.0
+FROM node:latest
 
-# Set working directory
 WORKDIR /app/medusa
 
-# Copy package.json and install dependencies
-COPY package.json .
-RUN apt-get update && \
-    apt-get install -y python3 && \
-    apt-get clean
-#RUN npm install -g npm@latest
-RUN npm install -g @medusajs/medusa-cli
-RUN npm install
-
-# Copy the rest of the application files
 COPY . .
 
-# Run database migration
-RUN npx medusa db:migrate
+RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 
-# Start the Medusa server in development mode
-CMD ["npx", "medusa", "develop"]
+RUN yarn global add @medusajs/medusa-cli
+
+RUN yarn
+
+RUN yarn build
+
+CMD medusa migrations run && yarn start
