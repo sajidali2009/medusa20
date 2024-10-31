@@ -2,7 +2,7 @@
 FROM node:20
 
 # Set environment variables for Medusa and databases
-ENV MEDUSA_BACKEND_URL=https://medusa1-medusa-project.knjmqz.easypanel.host:9000
+ENV MEDUSA_BACKEND_URL=https://medusa1-medusa-project1.knjmqz.easypanel.host:9000
 ENV DATABASE_URL=postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
 ENV REDIS_URL=redis://redis:6379
 

@@ -9,9 +9,9 @@ services:
       DATABASE_URL: postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
       REDIS_URL: redis://redis:6379
       NODE_TLS_REJECT_UNAUTHORIZED: '0'  # Allows self-signed certificates
-      STORE_CORS: https://medusa1-medusa-project.knjmqz.easypanel.host
-      ADMIN_CORS: https://medusa1-medusa-project.knjmqz.easypanel.host
-      AUTH_CORS: https://medusa1-medusa-project.knjmqz.easypanel.host
+      STORE_CORS: https://medusa1-medusa-project1.knjmqz.easypanel.host
+      ADMIN_CORS: https://medusa1-medusa-project1.knjmqz.easypanel.host
+      AUTH_CORS: https://medusa1-medusa-project1.knjmqz.easypanel.host
     depends_on:
       - postgres
       - redis
