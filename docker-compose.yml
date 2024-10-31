@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  medusa:
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      DATABASE_URL: postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
+      REDIS_URL: redis://redis:6379
+      NODE_TLS_REJECT_UNAUTHORIZED: '0'  # Allows self-signed certificates
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres-ssl
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: medusadb
+      POSTGRES_DB: medusa1
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - postgres-certs:/var/lib/postgresql/certs
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres-data:
+  postgres-certs:
