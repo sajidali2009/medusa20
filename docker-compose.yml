@@ -4,7 +4,7 @@ services:
   medusa:
     build: .
     ports:
-      - "9000:9000"
+      - "9000:7000"
     environment:
       DATABASE_URL: postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
       REDIS_URL: redis://redis:6379
@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: medusadb
       POSTGRES_DB: medusa1
     ports:
-      - "5432:5432"
+      - "5432:5431"
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - postgres-certs:/var/lib/postgresql/certs
