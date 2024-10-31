@@ -2,7 +2,7 @@
 FROM node:20
 
 # Set environment variables for Medusa and databases
-ENV MEDUSA_BACKEND_URL=https://medusa1-medusa-project2.knjmqz.easypanel.host:9000
+ENV MEDUSA_BACKEND_URL=https://medusa1-medusa-project3.knjmqz.easypanel.host
 ENV DATABASE_URL=postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
 ENV REDIS_URL=redis://redis:6379
 #ENV NODE_TLS_REJECT_UNAUTHORIZED=0  # Allows self-signed certificates
@@ -20,7 +20,7 @@ RUN npm install -g @medusajs/medusa-cli@latest && npm install
 COPY . .
 
 # Expose the Medusa port
-EXPOSE 80
+EXPOSE 9000
 
 # Run database migrations and start the Medusa server for v2
 CMD ["sh", "-c", "npx medusa db:migrate && npx medusa user -e admin@medusa-test.com -p supersecret && npx medusa develop"]

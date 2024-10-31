@@ -4,14 +4,14 @@ services:
   medusa:
     build: .
     ports:
-      - "80:80"  # Exposing Medusa on port 9001 externally
+      - "9001:9000"  # Exposing Medusa on port 9001 externally
     environment:
       DATABASE_URL: postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
       REDIS_URL: redis://redis:6379
       NODE_TLS_REJECT_UNAUTHORIZED: '0'  # Allows self-signed certificates
-      STORE_CORS: https://medusa1-medusa-project2.knjmqz.easypanel.host
-      ADMIN_CORS: https://medusa1-medusa-project2.knjmqz.easypanel.host
-      AUTH_CORS: https://medusa1-medusa-project2.knjmqz.easypanel.host
+      STORE_CORS: https://medusa1-medusa-project3.knjmqz.easypanel.host
+      ADMIN_CORS: https://medusa1-medusa-project3.knjmqz.easypanel.host
+      AUTH_CORS: https://medusa1-medusa-project3.knjmqz.easypanel.host
     depends_on:
       - postgres
       - redis
