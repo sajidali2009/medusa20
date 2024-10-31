@@ -5,7 +5,6 @@ FROM node:20
 ENV MEDUSA_BACKEND_URL=https://medusa1-medusa-project.knjmqz.easypanel.host:9000
 ENV DATABASE_URL=postgres://postgres:medusadb@postgres:5432/medusa1?sslmode=require&rejectUnauthorized=false
 ENV REDIS_URL=redis://redis:6379
-#ENV NODE_TLS_REJECT_UNAUTHORIZED=0  # Allows self-signed certificates
 
 # Create a working directory
 WORKDIR /app
@@ -22,5 +21,18 @@ COPY . .
 # Expose the Medusa port
 EXPOSE 9000
 
-# Run database migrations and start the Medusa server for v2
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa user -e admin@medusa-test.com -p supersecret && npx medusa develop"]
+# Run migrations and create user if necessary
+CMD ["sh", "-c", "
+    # Run migrations if not already applied
+    npx medusa db:migrate || echo 'Migrations already applied';
+    
+    # Create admin user if it doesn't already exist
+    if ! npx medusa user -l | grep -q 'admin@medusa-test.com'; then
+        npx medusa user -e admin@medusa-test.com -p supersecret;
+    else
+        echo 'Admin user already exists';
+    fi;
+    
+    # Start the Medusa server
+    npx medusa develop
+"]
